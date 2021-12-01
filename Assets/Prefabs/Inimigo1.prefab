@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: -2296102812552556956}
   - component: {fileID: -3468418027093401164}
   - component: {fileID: -1266703154638570404}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Inimigo1
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4663233803120859950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.23, y: -0.89, z: -0.72494775}
-  m_LocalScale: {x: 0.080717996, y: 0.07216826, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1011135423
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -3818536802358451858, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,7 +96,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663233803120859950}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: cf3a654de91da4646853926585e7bd72, type: 2}
   m_CullingMode: 0
