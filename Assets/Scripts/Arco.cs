@@ -4,15 +4,15 @@ using UnityEngine;
 public class Arco : MonoBehaviour
 {
 
-    public IEnumerator ArcoTrajetoria(Vector3 destino, float duracao) //Trajetória da munição
+    public IEnumerator ArcoTrajetoria(Vector3 destino, float duracao) //Trajetï¿½ria da muniï¿½ï¿½o
     {
         var posicaoInicial = transform.position;
         var percentualCompleto = 0.0f;
         while(percentualCompleto < 1.0f)
         {
             percentualCompleto += Time.deltaTime / duracao;
-            var alturaCorrente = Mathf.Sin(Mathf.PI * percentualCompleto);
-            transform.position = Vector3.Lerp(posicaoInicial, destino, percentualCompleto) + Vector3.up*alturaCorrente;
+            //var alturaCorrente = Mathf.Sin(Mathf.PI * percentualCompleto);
+            transform.position = Vector3.Lerp(posicaoInicial, destino, percentualCompleto); //+ Vector3.up*alturaCorrente;
             yield return null;
         }
         gameObject.SetActive(false);
