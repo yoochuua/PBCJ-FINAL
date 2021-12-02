@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+///<summary> GameManager do RPG
 public class RPGGameManager : MonoBehaviour
 {
     public static RPGGameManager instanciaCompartilhada = null;

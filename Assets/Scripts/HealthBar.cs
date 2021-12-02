@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+///<summary> Classe que controla o funcionamento da "HealthBar"
 public class HealthBar : MonoBehaviour
 {
     public PontosDano pontosDano; //objeto de leitura dos dados e quantos pontos tem o player

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+///<summary>  Classe que indica os tipos diferentes de item
 
 [CreateAssetMenu(menuName = "Item")] //Cria um menu item
 
-///<summary>  Classe que indica os tipos diferentes de item
 public class Item : ScriptableObject
 {
     public string NomeObjeto; 

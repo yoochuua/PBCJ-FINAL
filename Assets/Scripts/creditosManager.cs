@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+///<summary> Classe que controla o funcionamento da tela de creditos
 public class creditosManager : MonoBehaviour
 {
     
@@ -12,6 +13,6 @@ public class creditosManager : MonoBehaviour
 
     //Reinicia o jogo
   public void reiniciarJogo (){
-      SceneManager.LoadScene("RPG");
+      SceneManager.LoadScene("Horda");
   }
 }

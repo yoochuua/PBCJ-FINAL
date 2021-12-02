@@ -1,6 +1,6 @@
 using UnityEngine;
 using Cinemachine;
-
+///<summary> manager da câmera
 public class RPGCameraManager : MonoBehaviour
 {
     public static RPGCameraManager instanciaCompartilhada = null;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+///<summary> Classe que controla o funcionamento do "Score" e dos "Rounds"
 public class HandleRecord : MonoBehaviour
 {
     int QuantidadeMortos;

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
-
 using UnityEngine;
+///<summary> Classe que controla o comportamento dos tiros
 
 public class Munição : MonoBehaviour
 {

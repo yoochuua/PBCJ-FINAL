@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+///<summary> Classe que controla o funcionamento da movimentação do jogador
 public class MovimentaPlayer : MonoBehaviour
 {
     public float VelocidadeMovimento = 3.0f;    // equivale ao momento (impulso) a ser dado ao player

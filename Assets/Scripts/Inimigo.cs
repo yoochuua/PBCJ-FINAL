@@ -27,7 +27,7 @@ public class Inimigo : Caractere
     Método que adicina danos ao player de acordo com o que foi setado em força dano
     */
     private void OnTriggerEnter2D(Collider2D collision) { 
-        if(collision.gameObject.CompareTag("Player")){
+        if((collision.gameObject.CompareTag("Player")) & (collision is BoxCollider2D)){
             Player player = collision.gameObject.GetComponent<Player>();
             if(danoCoroutine == null){
                 danoCoroutine = StartCoroutine(player.DanoCaractere(forcaDano, 1.0f));

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/creditos.unity
     guid: c61824c00b55eb747aa08a615c09531f
+  - enabled: 1
+    path: Assets/Scenes/Horda.unity
+    guid: b4f4d3b89cb66eb4fa255c4c12fa4441
   m_configObjects: {}
