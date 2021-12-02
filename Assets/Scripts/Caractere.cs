@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 ///<summary> Classe abstrata que indica caracteristicas similares dos personagens
 public abstract class Caractere : MonoBehaviour
 {
@@ -10,9 +12,9 @@ public abstract class Caractere : MonoBehaviour
     //public int MaxPontosDano;   //versão anterior
     public float inicioPontosDano; // valor minimo inicial de saude do player 
     public float MaxPontosDano; // valor maximo permitido de saude
-
+    public int QuantidadeMortosTotal;
     public abstract void ResetCaractere(); //caractere volta
-
+    
     public virtual IEnumerator FlickerCaractere()
     {
         GetComponent<SpriteRenderer>().color = Color.red;

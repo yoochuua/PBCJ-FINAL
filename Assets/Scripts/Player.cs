@@ -9,12 +9,12 @@ public class Player : Caractere
     Inventario inventario;  
     public HealthBar healthBarPrefab; //Referencia ao objeto prefab da barra de vida
     HealthBar healthBar;
-
     public PontosDano pontosDano; // Tem o valor da "Saúde" do objeto
-
+    
     private void Start ()
      {
          //Inicia a barra de vida e o inventário
+        // recordGame = Instantiate(record);
         inventario = Instantiate(inventarioPrefab);
         healthBar = Instantiate(healthBarPrefab);
         healthBar.caractere = this;

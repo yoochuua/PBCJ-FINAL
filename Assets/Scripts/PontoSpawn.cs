@@ -11,17 +11,25 @@ public class PontoSpawn : MonoBehaviour
     public float intervaloRepeticao;
     
     private Vector3 posicaoDeSpawn;
-
+     int quantidadeInimigos;
+     int quantidadeInimigosTotal;
+    int QuantidadeMortos; 
     // Start is called before the first frame update
     void Start()
     {   
-        if(intervaloRepeticao > 0){
-            InvokeRepeating("SpawnO", 0.0f, intervaloRepeticao);
-        }
+         quantidadeInimigos = 1;
+         quantidadeInimigosTotal = 1;
+         for(int i = 0 ; i< quantidadeInimigos; i++){
+            // if(intervaloRepeticao > 0){
+            //     InvokeRepeating("SpawnO", 0.0f, 0);
+            // }
+            SpawnO();
+         }
+
     }
 
     public GameObject SpawnO(){
-        if(prefabParaSpawn != null){
+        if(prefabParaSpawn != null ){
             return Instantiate(prefabParaSpawn[Random.Range(0, prefabParaSpawn.Length)], EscolheLocalSpawn(), Quaternion.identity);
         }
         return null;
@@ -30,6 +38,19 @@ public class PontoSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
+        if(quantidadeInimigosTotal == QuantidadeMortos){
+            int quantidadeRounds = PlayerPrefs.GetInt("Round",0) + 1;
+           
+            quantidadeInimigos++;
+            quantidadeInimigosTotal = QuantidadeMortos + quantidadeInimigos;
+            PlayerPrefs.SetInt("Round",quantidadeRounds);
+            for(int i = 0 ; i< quantidadeInimigos; i++)
+            {
+                SpawnO();
+            }
+            
+        }
         
     }
 
