@@ -152,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 26.840801, y: 30.00693}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!58 &-2296102812552556956
 CircleCollider2D:
@@ -182,9 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d863b4a81f518e4da1d37f1eca3d858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inicioPontosDano: 10
-  MaxPontosDano: 10
-  forcaDano: 5
+  inicioPontosDano: 2
+  MaxPontosDano: 2
+  QuantidadeMortosTotal: 0
+  forcaDano: 1
   tipo: 0
 --- !u!114 &-1266703154638570404
 MonoBehaviour:
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4bc1ee27d10644982c55ac0399aa2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadePerseguicao: 5
+  velocidadePerseguicao: 2
   velocidadePeramular: 1
   intervaloMudancaDirecao: 3
   perseguePlayer: 1

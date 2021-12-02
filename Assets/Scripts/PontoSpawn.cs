@@ -8,23 +8,24 @@ public class PontoSpawn : MonoBehaviour
 {
     public GameObject[] prefabParaSpawn = {};
 
-    public float intervaloRepeticao;
+    public float intervaloRepeticao; 
     
-    private Vector3 posicaoDeSpawn;
-     int quantidadeInimigos;
-     int quantidadeInimigosTotal;
-    int QuantidadeMortos; 
+    private Vector3 posicaoDeSpawn;        // Guarda posição do "Spawn"
+    int quantidadeInimigos;         
+    int quantidadeInimigosTotal;    
+    int QuantidadeMortos;           // Guarda a quantidade de inimigos mortos
+
     // Start is called before the first frame update
     void Start()
     {   
-         quantidadeInimigos = 1;
-         quantidadeInimigosTotal = 1;
-         for(int i = 0 ; i< quantidadeInimigos; i++){
-            // if(intervaloRepeticao > 0){
-            //     InvokeRepeating("SpawnO", 0.0f, 0);
-            // }
+        quantidadeInimigos = 1;
+        quantidadeInimigosTotal = 1;
+        for(int i = 0 ; i < quantidadeInimigos; i++){
             SpawnO();
-         }
+        }
+        // if(intervaloRepeticao > 0){
+        //     InvokeRepeating("SpawnO", 0.0f, 0);
+        // }
 
     }
 
@@ -34,21 +35,24 @@ public class PontoSpawn : MonoBehaviour
         }
         return null;
     }
-
+    int c = 0;
     // Update is called once per frame
     void Update()
     {
         QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
-        if(quantidadeInimigosTotal == QuantidadeMortos){
-            int quantidadeRounds = PlayerPrefs.GetInt("Round",0) + 1;
-           
+        if(QuantidadeMortos == quantidadeInimigosTotal){
+            
             quantidadeInimigos++;
             quantidadeInimigosTotal = QuantidadeMortos + quantidadeInimigos;
-            PlayerPrefs.SetInt("Round",quantidadeRounds);
             for(int i = 0 ; i< quantidadeInimigos; i++)
             {
                 SpawnO();
             }
+            int quantidadeRounds = PlayerPrefs.GetInt("Round", 0) + 1;
+            PlayerPrefs.SetInt("Round", quantidadeRounds);
+            print("novo round!" + c);
+            print(PlayerPrefs.GetInt("Round", 0));
+            c++;
             
         }
         
