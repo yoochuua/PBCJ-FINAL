@@ -11,16 +11,16 @@ public class PontoSpawn : MonoBehaviour
     public float intervaloRepeticao; 
     
     private Vector3 posicaoDeSpawn;        // Guarda posição do "Spawn"
-    int quantidadeInimigos;         
-    int quantidadeInimigosTotal;    
-    int QuantidadeMortos;           // Guarda a quantidade de inimigos mortos
+    int spawnRate;                  // Quantidade de inimigos em um determinado round
+    int spawnedEnemyCount;          // Quantidade de inimigos spawnados até agora
+    int quantidadeMortos;           // Guarda a quantidade de inimigos mortos
 
     // Start is called before the first frame update
     void Start()
     {   
-        quantidadeInimigos = 1;
-        quantidadeInimigosTotal = 1;
-        for(int i = 0 ; i < quantidadeInimigos; i++){
+        spawnRate = 1;
+        spawnedEnemyCount = 1;
+        for(int i = 0 ; i < spawnRate; i++){
             SpawnO();
         }
         // if(intervaloRepeticao > 0){
@@ -29,6 +29,9 @@ public class PontoSpawn : MonoBehaviour
 
     }
 
+    /*
+        Função que instancia um novo objeto com base em uma prefab em uma posição Vector3
+    */
     public GameObject SpawnO(){
         if(prefabParaSpawn != null ){
             return Instantiate(prefabParaSpawn[Random.Range(0, prefabParaSpawn.Length)], EscolheLocalSpawn(), Quaternion.identity);
@@ -39,19 +42,23 @@ public class PontoSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
-        if(QuantidadeMortos == quantidadeInimigosTotal){
+        quantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
+        if(quantidadeMortos == spawnedEnemyCount){
             
-            quantidadeInimigos++;
-            quantidadeInimigosTotal = QuantidadeMortos + quantidadeInimigos;
-            for(int i = 0 ; i< quantidadeInimigos; i++)
+            spawnRate++;
+            spawnedEnemyCount += spawnRate;
+            
+            for(int i = 0 ; i< spawnRate; i++)
             {
                 SpawnO();
             }
-            int quantidadeRounds = PlayerPrefs.GetInt("Round", 0) + 1;
-            PlayerPrefs.SetInt("Round", quantidadeRounds);
+            
+            int roundAtual = PlayerPrefs.GetInt("Round", 0) + 1;
+            PlayerPrefs.SetInt("Round", roundAtual);
+            
             print("novo round!" + c);
             print(PlayerPrefs.GetInt("Round", 0));
+            print(roundAtual);
             c++;
             
         }

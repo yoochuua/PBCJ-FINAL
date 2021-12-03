@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
-using UnityEngine.SceneManagement;
 ///<summary> Classe que controla os pontos de danos causados pelo inimigo
 public class Inimigo : Caractere
 {
@@ -27,7 +26,7 @@ public class Inimigo : Caractere
     Método que adicina danos ao player de acordo com o que foi setado em força dano
     */
     private void OnTriggerEnter2D(Collider2D collision) { 
-        if((collision.gameObject.CompareTag("Player")) & (collision is BoxCollider2D)){
+        if(collision.gameObject.CompareTag("Player")){
             Player player = collision.gameObject.GetComponent<Player>();
             if(danoCoroutine == null){
                 danoCoroutine = StartCoroutine(player.DanoCaractere(forcaDano, 1.0f));

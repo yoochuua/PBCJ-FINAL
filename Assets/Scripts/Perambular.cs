@@ -126,7 +126,7 @@ public class Perambular : MonoBehaviour
     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && perseguePlayer)
+        if (collision.gameObject.CompareTag("Detection") && perseguePlayer)
         {
             velocidadeCorrente = velocidadePerseguicao;
             alvoTransform = collision.gameObject.transform;
@@ -144,7 +144,7 @@ public class Perambular : MonoBehaviour
     */
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Detection"))
         {
             animator.SetBool("Caminhando", false);
             velocidadeCorrente = velocidadePeramular;
