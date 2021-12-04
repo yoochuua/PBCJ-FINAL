@@ -162,6 +162,9 @@ public class Armas : MonoBehaviour
         return null;
     }
 
+    /*
+        Função que dispara a munição
+    */
     private void DisparaMunicao()
     {
         Vector3 posicaoMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
