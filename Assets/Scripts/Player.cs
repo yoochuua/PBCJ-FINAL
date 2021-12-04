@@ -2,47 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-///<summary>  Classe que indica 
+///<summary> 
+/// Classe que indica 
+///</summary>
 public class Player : Caractere
 {
-    int recorde =  0; // recorde
+    int recorde = 0; // recorde
     public Inventario inventarioPrefab; //referencia ao objeto prefab criando do Inventario
-    Inventario inventario;  
+    Inventario inventario;
     public HealthBar healthBarPrefab; //Referencia ao objeto prefab da barra de vida
     HealthBar healthBar;
     public PontosDano pontosDano; // Tem o valor da "Saúde" do objeto
     public AudioSource audioSource;
     public AudioClip damageClip;
-    
-    private void Start ()
-     {
-         //Inicia a barra de vida e o inventário
+
+    private void Start()
+    {
+        //Inicia a barra de vida e o inventário
         // recordGame = Instantiate(record);
         inventario = Instantiate(inventarioPrefab);
         healthBar = Instantiate(healthBarPrefab);
         healthBar.caractere = this;
         pontosDano.valor = inicioPontosDano;
     }
-    
+
     /*
     Método que verifica se o player ainda tem vida, caso sim, retira a quantidade de danos causados.
     Caso não, ele morre.
     */
     public override IEnumerator DanoCaractere(int dano, float intervalo)
     {
-        while (true){
+        while (true)
+        {
             StartCoroutine(FlickerCaractere());
             pontosDano.valor = pontosDano.valor - dano;
             audioSource.clip = damageClip;
             audioSource.Play();
-            if(pontosDano.valor <= float.Epsilon){
+            if (pontosDano.valor <= float.Epsilon)
+            {
                 KillCaractere();
                 break;
             }
-            if(intervalo > float.Epsilon){
+            if (intervalo > float.Epsilon)
+            {
                 yield return new WaitForSeconds(intervalo);
             }
-            else{
+            else
+            {
                 break;
             }
         }
@@ -50,7 +56,8 @@ public class Player : Caractere
     /*
     Método que reinicia o jogador
     */
-    public override void ResetCaractere(){
+    public override void ResetCaractere()
+    {
         inventario = Instantiate(inventarioPrefab);
         healthBar = Instantiate(healthBarPrefab);
         healthBar.caractere = this;
@@ -61,15 +68,17 @@ public class Player : Caractere
     */
     public override void KillCaractere()
     {
-        int QuantidadeMortosAtual = PlayerPrefs.GetInt("QuantidadeMortos",0);
-         recorde = PlayerPrefs.GetInt("Recorde",0);
-        print("QuantidadeMortosAtual"+QuantidadeMortosAtual+"Recorde" + recorde);
-        if(QuantidadeMortosAtual > recorde){
-             PlayerPrefs.SetInt("Recorde",QuantidadeMortosAtual);
-             SceneManager.LoadScene("vitoria");
+        int QuantidadeMortosAtual = PlayerPrefs.GetInt("QuantidadeMortos", 0);
+        recorde = PlayerPrefs.GetInt("Recorde", 0);
+        print("QuantidadeMortosAtual" + QuantidadeMortosAtual + "Recorde" + recorde);
+        if (QuantidadeMortosAtual > recorde)
+        {
+            PlayerPrefs.SetInt("Recorde", QuantidadeMortosAtual);
+            SceneManager.LoadScene("vitoria");
         }
-        else{
-        SceneManager.LoadScene("GameOver");
+        else
+        {
+            SceneManager.LoadScene("GameOver");
         }
         base.KillCaractere();
         Destroy(healthBar.gameObject);
@@ -94,38 +103,38 @@ public class Player : Caractere
                 switch (danoObjeto.tipoItem)
                 {
                     case Item.TipoItem.GEM1:
-                    //DeveDesaparecer = true; 
-                    DeveDesaparecer = inventario.AddItem(danoObjeto);
+                        //DeveDesaparecer = true; 
+                        DeveDesaparecer = inventario.AddItem(danoObjeto);
                         break;
                     case Item.TipoItem.GEM2:
-                    //DeveDesaparecer = true; 
-                    DeveDesaparecer = inventario.AddItem(danoObjeto);
+                        //DeveDesaparecer = true; 
+                        DeveDesaparecer = inventario.AddItem(danoObjeto);
                         break;
                     case Item.TipoItem.GEM3:
-                    //DeveDesaparecer = true; 
-                    DeveDesaparecer = inventario.AddItem(danoObjeto);
+                        //DeveDesaparecer = true; 
+                        DeveDesaparecer = inventario.AddItem(danoObjeto);
                         break;
                     case Item.TipoItem.GEM4:
-                    //DeveDesaparecer = true; 
-                    DeveDesaparecer = inventario.AddItem(danoObjeto);
+                        //DeveDesaparecer = true; 
+                        DeveDesaparecer = inventario.AddItem(danoObjeto);
                         break;
                     case Item.TipoItem.GEM5:
-                    //DeveDesaparecer = true; 
-                    DeveDesaparecer = inventario.AddItem(danoObjeto);
+                        //DeveDesaparecer = true; 
+                        DeveDesaparecer = inventario.AddItem(danoObjeto);
                         break;
                     case Item.TipoItem.MOEDA:
-                    //DeveDesaparecer = true; 
-                    DeveDesaparecer = inventario.AddItem(danoObjeto);
+                        //DeveDesaparecer = true; 
+                        DeveDesaparecer = inventario.AddItem(danoObjeto);
                         break;
                     case Item.TipoItem.HEALTH:
-                       DeveDesaparecer =  AjusteDanoObjeto(danoObjeto.quantidade);
+                        DeveDesaparecer = AjusteDanoObjeto(danoObjeto.quantidade);
                         break;
                     default:
                         break;
                 }
                 if (DeveDesaparecer)
                 {
-                collision.gameObject.SetActive(false); //Desativa o objeto coletado
+                    collision.gameObject.SetActive(false); //Desativa o objeto coletado
                 }
             }
         }
@@ -133,7 +142,8 @@ public class Player : Caractere
     /* metodo que ajusta os potos de dano*/
     public bool AjusteDanoObjeto(int quantidade)
     {
-        if(pontosDano.valor < MaxPontosDano){
+        if (pontosDano.valor < MaxPontosDano)
+        {
             pontosDano.valor = pontosDano.valor + quantidade;
             print("Ajustando PD " + quantidade + ". Novo valor =" + pontosDano.valor);
             return true;
