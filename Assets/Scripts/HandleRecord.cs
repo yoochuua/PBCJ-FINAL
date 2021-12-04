@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using System;
+
 ///<summary> Classe que controla o funcionamento do "Score" e dos "Rounds"
 public class HandleRecord : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class HandleRecord : MonoBehaviour
     void Update()
     {
         QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
-        Round = PlayerPrefs.GetInt("Round",0);
+        Round = 1 + QuantidadeMortos/2;//PlayerPrefs.GetInt("Round",0);
         GameObject.Find("Mortos").GetComponent<Text>().text = "Mortos: " + QuantidadeMortos;
         GameObject.Find("Round").GetComponent<Text>().text = "Round: " + Round;
     }

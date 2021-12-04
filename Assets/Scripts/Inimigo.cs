@@ -26,12 +26,14 @@ public class Inimigo : Caractere
     Método que adicina danos ao player de acordo com o que foi setado em força dano
     */
     private void OnTriggerEnter2D(Collider2D collision) { 
-        if(collision.gameObject.CompareTag("Player")){
-            Player player = collision.gameObject.GetComponent<Player>();
-            if(danoCoroutine == null){
-                danoCoroutine = StartCoroutine(player.DanoCaractere(forcaDano, 1.0f));
-            }
+        if(collision is BoxCollider2D){
+            if(collision.gameObject.CompareTag("Player")){
+                Player player = collision.gameObject.GetComponent<Player>();
+                if(danoCoroutine == null){
+                    danoCoroutine = StartCoroutine(player.DanoCaractere(forcaDano, 1.0f));
+                }
 
+            }
         }
     }
 
@@ -39,10 +41,12 @@ public class Inimigo : Caractere
     Método que verifica se o player já não está mais em contato com o inimigo, caso não, ele para o dano
     */
     void OnTriggerExit2D(Collider2D collision) {
-        if(collision.gameObject.CompareTag("Player")){
-            if(danoCoroutine != null){
-                StopCoroutine(danoCoroutine);
-                danoCoroutine = null;
+        if(collision is BoxCollider2D){
+            if(collision.gameObject.CompareTag("Player")){
+                if(danoCoroutine != null){
+                    StopCoroutine(danoCoroutine);
+                    danoCoroutine = null;
+                }
             }
         }
     }

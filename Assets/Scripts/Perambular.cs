@@ -99,13 +99,28 @@ public class Perambular : MonoBehaviour
             }
             if(temDirecao)
             {
+                if(posicaoFinal.x == 0)
+                {
+                    if(posicaoFinal.y > 0)
+                    {
+                        animator.SetBool("cima", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("baixo", true);
+                    }
+                }
                 if(posicaoFinal.x >= 0)
                 {
                     animator.SetBool("direita", true);
+                    animator.SetBool("cima", false);
+                    animator.SetBool("baixo", false);
                 }
                 else
                 {
                     animator.SetBool("direita", false);
+                    animator.SetBool("cima", false);
+                    animator.SetBool("baixo", false);
                 }
             }
             if (rbParaMover != null)

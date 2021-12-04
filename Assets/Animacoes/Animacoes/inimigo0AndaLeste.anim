@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: chefeAndaEsquerda
+  m_Name: inimigo0AndaLeste
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1159812499435880077, guid: 23e89bdc31ffcb84d89e2ab33751f65d, type: 3}
+      value: {fileID: -6316309628035280135, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
     - time: 0.083333336
-      value: {fileID: -1647856262911236092, guid: 23e89bdc31ffcb84d89e2ab33751f65d, type: 3}
+      value: {fileID: 90401297228416953, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
     - time: 0.16666667
-      value: {fileID: 4691080405741546782, guid: 23e89bdc31ffcb84d89e2ab33751f65d, type: 3}
+      value: {fileID: 6460802237845486963, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1159812499435880077, guid: 23e89bdc31ffcb84d89e2ab33751f65d, type: 3}
-    - {fileID: -1647856262911236092, guid: 23e89bdc31ffcb84d89e2ab33751f65d, type: 3}
-    - {fileID: 4691080405741546782, guid: 23e89bdc31ffcb84d89e2ab33751f65d, type: 3}
+    - {fileID: -6316309628035280135, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
+    - {fileID: 90401297228416953, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
+    - {fileID: 6460802237845486963, guid: db6ec14b4a5638a4caa94ffb770b0df1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
