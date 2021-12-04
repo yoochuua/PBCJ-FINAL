@@ -97,28 +97,32 @@ public class PontoSpawn : MonoBehaviour
             }}
         }
     }
+    /*
+        Escolhe o inimigo que será spawnado
+    */
     public void escolhaInimigo()
     {
         roundAtual = PlayerPrefs.GetInt("Round", 0);
         if(roundAtual <= 10){
-            inimigo[0] = 100;
+            inimigo[0] = 50;
+            inimigo[1] = 50;
         }
-        else if(roundAtual > 10 && roundAtual <= 31)
+        else if(roundAtual > 10 && roundAtual <= 21)
         {
             inimigo[0] = inimigo[0] - 5;
             inimigo[1] = inimigo[1] + 5;
         }
-        else if(roundAtual > 31 && roundAtual <= 52)
+        else if(roundAtual > 21 && roundAtual <= 42)
         {
-            inimigo[1] = inimigo[1] - 5;
-            inimigo[2] = inimigo[2] + 5;
+            inimigo[1] = inimigo[1] - 10;
+            inimigo[2] = inimigo[2] + 10;
         }
-        else if(roundAtual > 52 && roundAtual <= 73)
+        else if(roundAtual > 42 && roundAtual <= 63)
         {
-            inimigo[2] = inimigo[2] - 5;
-            inimigo[3] = inimigo[3] + 5;
+            inimigo[2] = inimigo[2] - 10;
+            inimigo[3] = inimigo[3] + 10;
         }
-        else if(roundAtual > 73 && roundAtual <= 94)
+        else if(roundAtual > 63 && roundAtual <= 84)
         {
             inimigo[3] = inimigo[3] - 5;
             inimigo[4] = inimigo[4] + 5;
