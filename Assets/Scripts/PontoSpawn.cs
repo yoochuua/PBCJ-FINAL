@@ -8,9 +8,9 @@ public class PontoSpawn : MonoBehaviour
 {
     public GameObject[] prefabParaSpawn = {};
 
-    public int roundInicia; //Verifica qual round o inimigo aparece
-    public int roundTermina;
-    public bool fim;
+    // public int roundInicia; //Verifica qual round o inimigo aparece
+    // public int roundTermina;
+    // public bool fim;
     
     private Vector3 posicaoDeSpawn;        // Guarda posição do "Spawn"
     int spawnRate;                  // Quantidade de inimigos em um determinado round
@@ -23,12 +23,12 @@ public class PontoSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        roundAtual = PlayerPrefs.GetInt("Round", 0);
         spawnRate = 1;
         spawnedEnemyCount = 1;
         
         for(int i = 0 ; i < spawnRate; i++){
-            SpawnO();
+            int indice = 0;
+            SpawnO(indice);
         }
 
     }
@@ -36,36 +36,26 @@ public class PontoSpawn : MonoBehaviour
     /*
         Função que instancia um novo objeto com base em uma prefab em uma posição Vector3
     */
-    public GameObject SpawnO(){
-        if(prefabParaSpawn != null && roundInicia <= roundAtual && (roundAtual <= roundTermina || fim == false)){
-            return Instantiate(prefabParaSpawn[Random.Range(0, prefabParaSpawn.Length)], EscolheLocalSpawn(), Quaternion.identity);
+    public GameObject SpawnO(int indicePrefab){
+        if(prefabParaSpawn != null /* && roundInicia <= roundAtual && (roundAtual <= roundTermina || fim == false)*/){
+            return Instantiate(prefabParaSpawn[indicePrefab], EscolheLocalSpawn(), Quaternion.identity);
         }
         return null;
     }
-    int c = 0;
     // Update is called once per frame
     void Update()
     {
-        quantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
+        quantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos", 0);
         roundAtual = PlayerPrefs.GetInt("Round", 0);
         if(quantidadeMortos == spawnedEnemyCount){
-            if(spawnRate <= 10){
+            /*if(spawnRate <= 10){
                 spawnRate++;
-            }
-            spawnedEnemyCount += spawnRate;
-            
-            for(int i = 0 ; i< spawnRate; i++)
-            {
-                SpawnO();
-            }
-            //int roundAtual = PlayerPrefs.GetInt("Round", 0) + 1;
-            //PlayerPrefs.SetInt("Round", roundAtual);
-            
-            //print("novo round!" + c);
-            //print(PlayerPrefs.GetInt("Round", 0));
-            //print(roundAtual);
-            c++;
-            
+            }*/
+            spawnRate++;
+            SpawnaInimigos();
+            print(PlayerPrefs.GetInt("Round", 0));
+            roundAtual = PlayerPrefs.GetInt("Round", 0) + 1;
+            PlayerPrefs.SetInt("Round", roundAtual);
         }
         
     }
@@ -84,6 +74,25 @@ public class PontoSpawn : MonoBehaviour
         float yAleatorio = Random.Range(limitesDoMapa[2], limitesDoMapa[3]);
         posicaoDeSpawn = new Vector3(xAleatorio, yAleatorio, 0.0f);
         return posicaoDeSpawn;
+    }
+
+    /*
+        Spawna os inimigos no mapa
+    */
+    public void SpawnaInimigos(){
+        for(int i = 0 ; i< spawnRate; i++)
+            {
+                int indicePrefab = Random.Range(0, prefabParaSpawn.Length);
+                SpawnO(indicePrefab);
+                spawnedEnemyCount++;
+            }
+    }
+
+    /*
+        Retorna o valor que corresponde ao quanto o SpawnRate aumenta por round
+    */
+    public float AcrescimoSpawnRate(){
+        return 0;
     }
 
 }

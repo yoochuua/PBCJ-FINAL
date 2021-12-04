@@ -25,7 +25,8 @@ public class HandleRecord : MonoBehaviour
     void Update()
     {
         QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0);
-        Round = 1 + QuantidadeMortos/2;//PlayerPrefs.GetInt("Round",0);
+        Round = PlayerPrefs.GetInt("Round",0);
+        // Round = 1 + QuantidadeMortos/2;
         GameObject.Find("Mortos").GetComponent<Text>().text = "Mortos: " + QuantidadeMortos;
         GameObject.Find("Round").GetComponent<Text>().text = "Round: " + Round;
     }
