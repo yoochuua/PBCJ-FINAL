@@ -13,10 +13,10 @@ public abstract class Caractere : MonoBehaviour
     public float MaxPontosDano; // valor maximo permitido de saude
     public int QuantidadeMortosTotal;
     public abstract void ResetCaractere(); //caractere volta
-    
+
     /* 
         Coroutine que faz o caractere piscar quando toma dano
-    */ 
+    */
     public virtual IEnumerator FlickerCaractere()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
@@ -32,7 +32,8 @@ public abstract class Caractere : MonoBehaviour
     /*
         Metodo que tira o personagem de cena caso ele morra
     */
-    public virtual void KillCaractere(){
+    public virtual void KillCaractere()
+    {
         Destroy(gameObject);
     }
 }

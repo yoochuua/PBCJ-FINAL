@@ -16,7 +16,7 @@ public class creditosManager : MonoBehaviour
     {
         textoCreditos = GameObject.Find("Creditos").GetComponent<Text>();
     }
-    
+
     /* Callback do botão de voltar */
     public void voltarMenu()
     {

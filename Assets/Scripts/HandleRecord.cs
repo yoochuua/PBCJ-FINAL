@@ -13,7 +13,7 @@ public class HandleRecord : MonoBehaviour
 {
     int QuantidadeMortos; // quantidade inimigosMortos em todos os rounds
     int Round;// round atual
-    
+
     // Start is called before the first frame update
     void Start()
     {
