@@ -1,14 +1,18 @@
 using System.Collections;
 using UnityEngine;
-///<summary> classe referente ao arco utilizado pelo personagem
+
+///<summary> 
+/// Classe referente ao arco utilizado pelo personagem
+///</summary>
 public class Arco : MonoBehaviour
 {
-
+    /* Método que controla a trajetória do arco
+    */
     public IEnumerator ArcoTrajetoria(Vector3 destino, float duracao) //Trajet�ria da muni��o
     {
         var posicaoInicial = transform.position;
         var percentualCompleto = 0.0f;
-        while(percentualCompleto < 1.0f)
+        while (percentualCompleto < 1.0f)
         {
             percentualCompleto += Time.deltaTime / duracao;
             //var alturaCorrente = Mathf.Sin(Mathf.PI * percentualCompleto);
@@ -17,5 +21,4 @@ public class Arco : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-
 }

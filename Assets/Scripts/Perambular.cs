@@ -3,7 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 
-///<summary> Classe que controla a movimentação dos inimigos
+///<summary> 
+///Classe que controla a movimentação dos inimigos
+///</summary>
 public class Perambular : MonoBehaviour
 {
     public float velocidadePerseguicao; // velocidde do "Inimigo" na área de Spot
@@ -20,14 +22,18 @@ public class Perambular : MonoBehaviour
     Transform alvoTransform = null; //Armazena o componente Trannsform do alvo
     Vector3 posicaoFinal; //Posição setado como a final do movimento
 
+    //Awake is called when the script instance is being loaded.
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        rb2D = GetComponent<Rigidbody2D>();
+    }
 
 
     /* Start is called before the first frame update*/
     void Start()
     {
-        animator = GetComponent<Animator>();
         velocidadeCorrente = velocidadePeramular;
-        rb2D = GetComponent<Rigidbody2D>();
         StartCoroutine(RotinaPerambular());
     }
 
@@ -36,7 +42,7 @@ public class Perambular : MonoBehaviour
     */
     public IEnumerator RotinaPerambular()
     {
-        while(true)
+        while (true)
         {
             EscolheNovoPontoFinal();
             if (moverCoroutine != null)
@@ -47,7 +53,7 @@ public class Perambular : MonoBehaviour
             yield return new WaitForSeconds(intervaloMudancaDirecao);
         }
     }
-    
+
     /*
     Método que seta uma posição final aleatória, caso o player não esteja perto
     */
@@ -75,21 +81,21 @@ public class Perambular : MonoBehaviour
     public IEnumerator Mover(Rigidbody2D rbParaMover, float velocidade)
     {
         float distanciaFaltante = (transform.position - posicaoFinal).sqrMagnitude;
-        
+
 
         //Enquanto não chegou a posição final
-        while(distanciaFaltante > float.Epsilon)
+        while (distanciaFaltante > float.Epsilon)
         {
             //Verifica se existe algum alvo (no caso o player). Caso sim, ele muda o ponto final como sendo a possição do player
             if (alvoTransform != null)
             {
                 posicaoFinal = alvoTransform.position;
             }
-            if(temDirecao)
+            if (temDirecao)
             {
-                if(Mathf.Abs(posicaoFinal.x - transform.position.x) <= 2)
+                if (Mathf.Abs(posicaoFinal.x - transform.position.x) <= 2)
                 {
-                    if(posicaoFinal.y > transform.position.y)
+                    if (posicaoFinal.y > transform.position.y)
                     {
                         animator.SetBool("cima", true);
                         animator.SetBool("baixo", false);
@@ -100,7 +106,7 @@ public class Perambular : MonoBehaviour
                         animator.SetBool("cima", false);
                     }
                 }
-                else if(posicaoFinal.x >= transform.position.x)
+                else if (posicaoFinal.x >= transform.position.x)
                 {
                     animator.SetBool("direita", true);
                     animator.SetBool("cima", false);
@@ -127,7 +133,7 @@ public class Perambular : MonoBehaviour
     }
 
     /*
-    Método que movimenta transforma o player em alvo caso ele entre no raio do colider e a flag perseguePlayer esteja ativa.
+        Método que movimenta transforma o player em alvo caso ele entre no raio do colider e a flag perseguePlayer esteja ativa.
     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -144,16 +150,16 @@ public class Perambular : MonoBehaviour
     }
 
     /*
-    Método que verifica se o player saiu do raio do collider.
-    Caso positivo, ele para de caminhar e o alvo volta para nenhum
+        Método que verifica se o player saiu do raio do collider.
+        Caso positivo, ele para de caminhar e o alvo volta para nenhum
     */
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Detection"))
+        if (collision.gameObject.CompareTag("Detection"))
         {
             animator.SetBool("Caminhando", false);
             velocidadeCorrente = velocidadePeramular;
-            if (moverCoroutine != null) 
+            if (moverCoroutine != null)
             {
                 StopCoroutine(moverCoroutine);
             }

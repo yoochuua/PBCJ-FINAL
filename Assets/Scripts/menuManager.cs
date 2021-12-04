@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-///<summary> Classe que controla o funcionamento do menu
+///<summary>
+///Classe que controla o funcionamento do menu
+///</summary>
 
 public class menuManager : MonoBehaviour
 {
-    //inicia o jogo
-    public void iniciaJogo (){
+    /*
+        Carrrega a cena do jogo
+    */
+    public void iniciaJogo()
+    {
         SceneManager.LoadScene("Horda");
     }
-    
-    //inicia a tela de créditos
-    public void iniciaCreditos(){
+
+    /*
+        Carrega a cena de creditos
+    */
+    public void iniciaCreditos()
+    {
         SceneManager.LoadScene("creditos");
     }
 }
