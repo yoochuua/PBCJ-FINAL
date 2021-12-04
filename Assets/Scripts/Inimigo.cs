@@ -4,34 +4,43 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
-///<summary> Classe que controla os pontos de danos causados pelo inimigo
+///<summary> 
+///Classe que controla os pontos de danos causados pelo inimigo
+///</summary>
 public class Inimigo : Caractere
 {
-   
-    float pontosVida; // equivalente a saúde do inimigo
+
+    float pontosVida; // saúde do inimigo
     public int forcaDano; // poder de dano
-    public int dropChance;
-    public GameObject[] drop = { };
-    Coroutine danoCoroutine;
-    public int tipo;
+    public int dropChance; // chance de dropar algum item
+    public GameObject[] drop = { }; // array de itens que podem ser dropados
+    Coroutine danoCoroutine; // coroutine que aplica dano
+    public int tipo; // tipo do inimigo
+
     /* Start is called before the first frame update*/
     void Start()
     {
-        
+
     }
 
-    private void OnEnable(){
+    /* OnEnable is called when the object becomes enabled and active */
+    private void OnEnable()
+    {
         ResetCaractere();
     }
 
     /*
-    Método que adicina danos ao player de acordo com o que foi setado em força dano
+        Método que adicina danos ao player de acordo com o que foi setado em força dano quando ele entra em contato com o inimigo
     */
-    private void OnTriggerEnter2D(Collider2D collision) { 
-        if(collision is BoxCollider2D){
-            if(collision.gameObject.CompareTag("Player")){
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision is BoxCollider2D)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
                 Player player = collision.gameObject.GetComponent<Player>();
-                if(danoCoroutine == null){
+                if (danoCoroutine == null)
+                {
                     danoCoroutine = StartCoroutine(player.DanoCaractere(forcaDano, 1.0f));
                 }
 
@@ -40,12 +49,16 @@ public class Inimigo : Caractere
     }
 
     /*
-    Método que verifica se o player já não está mais em contato com o inimigo, caso não, ele para o dano
+        Método que verifica se o player já não está mais em contato com o inimigo, caso não, ele para o dano
     */
-    void OnTriggerExit2D(Collider2D collision) {
-        if(collision is BoxCollider2D){
-            if(collision.gameObject.CompareTag("Player")){
-                if(danoCoroutine != null){
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision is BoxCollider2D)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                if (danoCoroutine != null)
+                {
                     StopCoroutine(danoCoroutine);
                     danoCoroutine = null;
                 }
@@ -54,40 +67,46 @@ public class Inimigo : Caractere
     }
 
     /*
-    Método que verifica se o inimigo ainda tem vida, caso sim, retira a quantidade de danos causados.
-    Caso não, ele morre.
+        Co-rotina que aplica o dano:
+        verifica se o inimigo ainda tem vida, caso sim, retira a quantidade de danos causados.
+        Caso não, ele morre.
     */
     public override IEnumerator DanoCaractere(int dano, float intervalo)
     {
-        while(true){
+        while (true)
+        {
             StartCoroutine(FlickerCaractere());
 
             pontosVida = pontosVida - dano;
-            if(pontosVida <= float.Epsilon){
-                int QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0) + 1;
-                PlayerPrefs.SetInt("QuantidadeMortos",QuantidadeMortos);
+            if (pontosVida <= float.Epsilon)
+            {
+                int QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos", 0) + 1;
+                PlayerPrefs.SetInt("QuantidadeMortos", QuantidadeMortos);
                 KillCaractere();
                 DropO(gameObject.transform.position);
-                if (tipo == 2){
-                     SceneManager.LoadScene("vitoria");
-                 }
+                if (tipo == 2)
+                {
+                    SceneManager.LoadScene("vitoria");
+                }
                 break;
             }
-            if(intervalo > float.Epsilon){
+            if (intervalo > float.Epsilon)
+            {
                 yield return new WaitForSeconds(intervalo);
             }
-            else{
+            else
+            {
                 break;
             }
         }
     }
 
     /*
-        FUNÇÃO DE DROPAR GAMEoBJECT QUANDO INIMIGO  MORRE
+        Método que dropa um item aleatório no local do inimigo
     */
     public GameObject DropO(Vector3 posicao)
     {
-        while (drop != null && Random.Range(0,100)<dropChance)//Probabilidade de haver drops
+        while (drop != null && Random.Range(0, 100) < dropChance)//Probabilidade de haver drops
         {
             return Instantiate(drop[Random.Range(0, drop.Length)], posicao, Quaternion.identity);
             dropChance = dropChance - (dropChance / 3);
@@ -95,15 +114,11 @@ public class Inimigo : Caractere
         return null;
     }
 
-  
- 
-
-    public override void ResetCaractere(){
-        pontosVida = inicioPontosDano;
-    }
-    // Update is called once per frame
-    void Update()
+    /*
+        Método que reseta o inimigo (faz override do método da classe Caractere)
+    */
+    public override void ResetCaractere()
     {
-        
+        pontosVida = inicioPontosDano;
     }
 }
