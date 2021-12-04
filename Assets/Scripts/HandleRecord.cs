@@ -9,13 +9,16 @@ using System;
 ///<summary> Classe que controla o funcionamento do "Score" e dos "Rounds"
 public class HandleRecord : MonoBehaviour
 {
-    int QuantidadeMortos;
-    int Round;
+    int QuantidadeMortos; // quantidade inimigosMortos
+    int Round;// quantidade de rounds
     // Start is called before the first frame update
     void Start()
     {
+        
+         int Recorde = PlayerPrefs.GetInt("Recorde",0);
          PlayerPrefs.SetInt("QuantidadeMortos",0);
          PlayerPrefs.SetInt("Round",1);
+         GameObject.Find("Recorde").GetComponent<Text>().text = "Recorde: " + Recorde + " Mortos";
     }
 
     // Update is called once per frame

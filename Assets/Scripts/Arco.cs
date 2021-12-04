@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+///<summary> classe referente ao arco utilizado pelo personagem
 public class Arco : MonoBehaviour
 {
 

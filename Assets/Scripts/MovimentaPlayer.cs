@@ -40,7 +40,7 @@ public class MovimentaPlayer : MonoBehaviour
     private void FixedUpdate() {
         MoveCaractere();
     }
-
+    /*metodo para a movimentação de caractere*/
     private void MoveCaractere(){
         Movimento.x = Input.GetAxisRaw("Horizontal");
         Movimento.y = Input.GetAxisRaw("Vertical");

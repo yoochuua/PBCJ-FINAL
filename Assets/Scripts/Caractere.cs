@@ -14,7 +14,7 @@ public abstract class Caractere : MonoBehaviour
     public float MaxPontosDano; // valor maximo permitido de saude
     public int QuantidadeMortosTotal;
     public abstract void ResetCaractere(); //caractere volta
-    
+    /*metodo que realiza o flicker do caractere*/
     public virtual IEnumerator FlickerCaractere()
     {
         GetComponent<SpriteRenderer>().color = Color.red;

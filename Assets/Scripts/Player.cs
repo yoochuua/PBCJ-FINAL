@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 ///<summary>  Classe que indica 
 public class Player : Caractere
 {
+    int recorde =  0; // recorde
     public Inventario inventarioPrefab; //referencia ao objeto prefab criando do Inventario
     Inventario inventario;  
     public HealthBar healthBarPrefab; //Referencia ao objeto prefab da barra de vida
@@ -56,7 +57,16 @@ public class Player : Caractere
     */
     public override void KillCaractere()
     {
+        int QuantidadeMortosAtual = PlayerPrefs.GetInt("QuantidadeMortos",0);
+         recorde = PlayerPrefs.GetInt("Recorde",0);
+        print("QuantidadeMortosAtual"+QuantidadeMortosAtual+"Recorde" + recorde);
+        if(QuantidadeMortosAtual > recorde){
+             PlayerPrefs.SetInt("Recorde",QuantidadeMortosAtual);
+             SceneManager.LoadScene("vitoria");
+        }
+        else{
         SceneManager.LoadScene("GameOver");
+        }
         base.KillCaractere();
         Destroy(healthBar.gameObject);
         Destroy(inventario.gameObject);
@@ -116,7 +126,7 @@ public class Player : Caractere
             }
         }
     }
-
+    /* metodo que ajusta os potos de dano*/
     public bool AjusteDanoObjeto(int quantidade)
     {
         if(pontosDano.valor < MaxPontosDano){

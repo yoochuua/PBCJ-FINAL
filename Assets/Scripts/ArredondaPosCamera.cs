@@ -9,7 +9,7 @@ public class ArredondaPosCamera : CinemachineExtension
     public float PixelsPerUnit = 3;
 
     /*
-    
+        método para fazer o arredondamento da camera
     */
     protected override void PostPipelineStageCallback(
         CinemachineVirtualCameraBase vcam,
