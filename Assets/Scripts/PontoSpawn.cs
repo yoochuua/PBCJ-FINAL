@@ -17,16 +17,21 @@ public class PontoSpawn : MonoBehaviour
     int spawnedEnemyCount;          // Quantidade de inimigos spawnados até agora
     int quantidadeMortos;           // Guarda a quantidade de inimigos mortos
     int roundAtual;
+    int[] inimigo = new int[5];
     
     
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        inimigo[0] = 100;
+        inimigo[1] = 0;
+        inimigo[2] = 0;
+        inimigo[3] = 0;
+        inimigo[4] = 0;
         spawnRate = 1;
         spawnedEnemyCount = 1;
-        
-        for(int i = 0 ; i < spawnRate; i++){
+        for(int i = 0; i < spawnRate; i++){
             int indice = 0;
             SpawnO(indice);
         }
@@ -48,9 +53,6 @@ public class PontoSpawn : MonoBehaviour
         quantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos", 0);
         roundAtual = PlayerPrefs.GetInt("Round", 0);
         if(quantidadeMortos == spawnedEnemyCount){
-            /*if(spawnRate <= 10){
-                spawnRate++;
-            }*/
             spawnRate++;
             SpawnaInimigos();
             print(PlayerPrefs.GetInt("Round", 0));
@@ -80,12 +82,55 @@ public class PontoSpawn : MonoBehaviour
         Spawna os inimigos no mapa
     */
     public void SpawnaInimigos(){
-        for(int i = 0 ; i< spawnRate; i++)
+        escolhaInimigo();
+        int quantidadeInimigo;
+        for(int j= 0; j < 5; j++){
+            quantidadeInimigo = (int)(inimigo[j] * 0.01 * spawnRate);
+            if(quantidadeInimigo > 0){
+            for(int i = 0 ; i< quantidadeInimigo; i++)
             {
-                int indicePrefab = Random.Range(0, prefabParaSpawn.Length);
-                SpawnO(indicePrefab);
+                
+                //int indicePrefab = Random.Range(0, prefabParaSpawn.Length);
+                //SpawnO(prefabParaSpawn.Length);
+                SpawnO(j);
                 spawnedEnemyCount++;
-            }
+            }}
+        }
+    }
+    public void escolhaInimigo()
+    {
+        roundAtual = PlayerPrefs.GetInt("Round", 0);
+        if(roundAtual <= 10){
+            inimigo[0] = 100;
+        }
+        else if(roundAtual > 10 && roundAtual <= 31)
+        {
+            inimigo[0] = inimigo[0] - 5;
+            inimigo[1] = inimigo[1] + 5;
+        }
+        else if(roundAtual > 31 && roundAtual <= 52)
+        {
+            inimigo[1] = inimigo[1] - 5;
+            inimigo[2] = inimigo[2] + 5;
+        }
+        else if(roundAtual > 52 && roundAtual <= 73)
+        {
+            inimigo[2] = inimigo[2] - 5;
+            inimigo[3] = inimigo[3] + 5;
+        }
+        else if(roundAtual > 73 && roundAtual <= 94)
+        {
+            inimigo[3] = inimigo[3] - 5;
+            inimigo[4] = inimigo[4] + 5;
+        }
+        else
+        {
+            inimigo[4] = 100;
+            inimigo[0] = 0;
+            inimigo[1] = 0;
+            inimigo[2] = 0;
+            inimigo[3] = 0;
+        }
     }
 
     /*

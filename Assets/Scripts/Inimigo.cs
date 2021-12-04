@@ -10,6 +10,8 @@ public class Inimigo : Caractere
    
     float pontosVida; // equivalente a saúde do inimigo
     public int forcaDano; // poder de dano
+    public int dropChance;
+    public GameObject[] drop = { };
     Coroutine danoCoroutine;
     public int tipo;
     /* Start is called before the first frame update*/
@@ -65,7 +67,8 @@ public class Inimigo : Caractere
                 int QuantidadeMortos = PlayerPrefs.GetInt("QuantidadeMortos",0) + 1;
                 PlayerPrefs.SetInt("QuantidadeMortos",QuantidadeMortos);
                 KillCaractere();
-                 if(tipo == 2){
+                DropO(gameObject.transform.position);
+                if (tipo == 2){
                      SceneManager.LoadScene("vitoria");
                  }
                 break;
@@ -78,6 +81,20 @@ public class Inimigo : Caractere
             }
         }
     }
+
+
+    public GameObject DropO(Vector3 posicao) // FUNÇÃO DE DROPAR GAMEoBJECT QUANDO INIMIGO  MORRE
+    {
+        while (drop != null && Random.Range(0,100)<dropChance)//Probabilidade de haver drops
+        {
+            return Instantiate(drop[Random.Range(0, drop.Length)], posicao, Quaternion.identity);
+            dropChance = dropChance - (dropChance / 3);
+        }
+        return null;
+    }
+
+  
+ 
 
     public override void ResetCaractere(){
         pontosVida = inicioPontosDano;
