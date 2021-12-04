@@ -8,6 +8,7 @@ TagManager:
   - Coletavel
   - Virtual Camera
   - Boss
+  - Detection
   layers:
   - Default
   - TransparentFX
