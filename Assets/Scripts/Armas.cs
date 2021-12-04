@@ -2,24 +2,28 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(Animator))]
+/// <summary>
+/// Clase que representa a arma do jogador
+/// </summary>
 public class Armas : MonoBehaviour
 {
-
-    public GameObject municaoPrefab;        //armazena o prefab da muni��o
-    static List<GameObject> municaoPiscina; //Pool de muni��o
+    public GameObject municaoPrefab;        //armazena o prefab da municao
+    static List<GameObject> municaoPiscina; //Pool de municao
     public int tamanhoPiscina;              //Tamano da Piscina
-    public float velocidadeArma;            //Velocidade da muni��o
+    public float velocidadeMunicao;         //Velocidade da municao
 
-    bool atirando;
-    [HideInInspector]
+    bool atirando;                          //Flag que indica se o jogador esta atirando
+    // [HideInInspector]
     //public Animator animator;
 
-    Camera cameraLocal;
+    Camera cameraLocal;                     //Armazena a camera local, usada para converter a posicao do mouse em coordenadas do mundo
 
-    float slopePositivo;
-    float slopeNegativo;
+    float slopePositivo;                    //Armazena o valor do slope positivo (diagonal da tela)
+    float slopeNegativo;                    //Armazena o valor do slope negativo (diagonal da tela)
 
+    /// <summary>
+    /// Enum quadrante: identifica os 4 quadrantes da tela
+    /// </summary>
     enum Quadrante
     {
         Leste,
@@ -28,11 +32,14 @@ public class Armas : MonoBehaviour
         Norte
     }
 
+    /* Start is called before the first frame update*/
     private void Start()
     {
-        //animator = GetComponent<Animator>();
+        //Inicializa variaveis e referencias
         atirando = false;
         cameraLocal = Camera.main;
+
+        //Calcula slope positivo e negativo
         Vector2 abaixoEsquerda = cameraLocal.ScreenToWorldPoint(new Vector2(0, 0));
         Vector2 acimaDireita = cameraLocal.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         Vector2 acimaEsquerda = cameraLocal.ScreenToWorldPoint(new Vector2(0, Screen.height));
@@ -41,6 +48,9 @@ public class Armas : MonoBehaviour
         slopeNegativo = PegaSlope(acimaEsquerda, abaixoDireita);
     }
 
+    /* AcimaSlopePositivo(Vector2 posicaoEntrada)
+        Retorna true se a posicao esta acima do slope positivo relativo ao eixo X do player
+    */
     bool AcimaSlopePositivo(Vector2 posicaoEntrada)
     {
         Vector2 posicaoPlayer = gameObject.transform.position;
@@ -50,6 +60,9 @@ public class Armas : MonoBehaviour
         return entradaInterseccao > interseccaoY;
     }
 
+    /* AcimaSlopeNegativo(Vector2 posicaoEntrada)
+        Retorna true se a posicao esta acima do slope negativo relativo ao eixo X do player
+    */
     bool AcimaSlopeNegativo(Vector2 posicaoEntrada)
     {
         Vector2 posicaoPlayer = gameObject.transform.position;
@@ -59,17 +72,21 @@ public class Armas : MonoBehaviour
         return entradaInterseccao > interseccaoY;
     }
 
+    /* PegaQuadrante()
+        Retorna o quadrante do mouse em relacao à tela
+    */
     Quadrante PegaQuadrante()
     {
         Vector2 posicaoMouse = Input.mousePosition;
         Vector2 posicaoPlayer = transform.position;
         bool acimaSlopePositivo = AcimaSlopePositivo(posicaoMouse);
         bool acimaSlopeNegativo = AcimaSlopeNegativo(posicaoMouse);
-        if(!acimaSlopePositivo && acimaSlopeNegativo)
+        if (!acimaSlopePositivo && acimaSlopeNegativo)
         {
             return Quadrante.Leste;
 
-        }else if (!acimaSlopePositivo && !acimaSlopeNegativo)
+        }
+        else if (!acimaSlopePositivo && !acimaSlopeNegativo)
         {
             return Quadrante.Sul;
         }
@@ -82,6 +99,8 @@ public class Armas : MonoBehaviour
             return Quadrante.Norte;
         }
     }
+
+    /* Awake is called when the script instance is being loaded */
     public void Awake()
     {
         if (municaoPiscina == null)
@@ -96,6 +115,7 @@ public class Armas : MonoBehaviour
             municaoPiscina.Add(municaoO);
         }
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -108,6 +128,9 @@ public class Armas : MonoBehaviour
 
     }
 
+    /* UpdateEstado()
+        Atualiza o estado do jogador
+    */
     private void UpdateEstado()
     {
         if (atirando)
@@ -143,11 +166,17 @@ public class Armas : MonoBehaviour
         }
     }
 
+    /* PegaSlope()
+        Calcula o slope entre dois pontos
+    */
     float PegaSlope(Vector2 ponto1, Vector2 ponto2)
     {
-        return (ponto2.y-ponto1.y)/ (ponto2.x - ponto1.x);
+        return (ponto2.y - ponto1.y) / (ponto2.x - ponto1.x);
     }
 
+    /* SpawnMunicao(Vector3 posicao)
+        Spawna uma municao na posicao passada
+    */
     public GameObject SpawnMunicao(Vector3 posicao)
     {
         foreach (GameObject municao in municaoPiscina)
@@ -163,7 +192,7 @@ public class Armas : MonoBehaviour
     }
 
     /*
-        Função que dispara a munição
+        Método que dispara a munição
     */
     private void DisparaMunicao()
     {
@@ -172,7 +201,7 @@ public class Armas : MonoBehaviour
         if (municao != null)
         {
             Arco arcoScript = municao.GetComponent<Arco>();
-            float velocidadeArma1 = velocidadeArma;
+            float velocidadeArma1 = velocidadeMunicao;
             float duracaoTrajetoria = 1.0f / velocidadeArma1;
             StartCoroutine(arcoScript.ArcoTrajetoria(posicaoMouse, duracaoTrajetoria));
 
@@ -180,6 +209,7 @@ public class Armas : MonoBehaviour
         }
     }
 
+    /* OnDestroy is called when the behaviour is destroyed */
     private void OnDestroy()
     {
         municaoPiscina = null;

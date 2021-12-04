@@ -16,12 +16,14 @@ public class PontoSpawn : MonoBehaviour
     int spawnRate;                  // Quantidade de inimigos em um determinado round
     int spawnedEnemyCount;          // Quantidade de inimigos spawnados até agora
     int quantidadeMortos;           // Guarda a quantidade de inimigos mortos
-    int roundAtual;
-    int[] inimigo = new int[5];
+    int roundAtual;                 //Verifica o round que está
+    int[] inimigo = new int[5];     //Usado apra ver a probabilidade dos inimigos
     
     
 
-    // Start is called before the first frame update
+    /*
+        Start is called before the first frame update
+    */
     void Start()
     {
         inimigo[0] = 100;
@@ -79,7 +81,7 @@ public class PontoSpawn : MonoBehaviour
     }
 
     /*
-        Spawna os inimigos no mapa
+        Spawna os inimigos no mapa, verificando quantos de cada inimigo precisa
     */
     public void SpawnaInimigos(){
         escolhaInimigo();
@@ -89,14 +91,21 @@ public class PontoSpawn : MonoBehaviour
             if(quantidadeInimigo > 0){
             for(int i = 0 ; i< quantidadeInimigo; i++)
             {
-                
-                //int indicePrefab = Random.Range(0, prefabParaSpawn.Length);
-                //SpawnO(prefabParaSpawn.Length);
                 SpawnO(j);
                 spawnedEnemyCount++;
             }}
         }
     }
+
+    /*
+        Escolhe porcentagem para cada inimigo
+        sendo o inimigo0 100% até o round 10
+        inimigo1 aumenta do round 11 até round 31, até 100%. Enquanto o 0 decresce
+        inimigo2 aumenta do round 32 até round 52, até 100%. Enquanto o 1 decresce
+        inimigo3 aumenta do round 53 até round 73, até 100%. Enquanto o 1 decresce
+        inimigo4 aumenta do round 73 até round 94 que a partir desse round é o unico tipo. Enquanto o 3 decresce
+
+    */
     public void escolhaInimigo()
     {
         roundAtual = PlayerPrefs.GetInt("Round", 0);
