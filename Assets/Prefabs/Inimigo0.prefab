@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8240047376478850289}
   - component: {fileID: 8240047376478850254}
   - component: {fileID: 6047191031074079949}
-  - component: {fileID: 429026646584860593}
   - component: {fileID: 9144666052504132699}
   - component: {fileID: 3049271337120378004}
   m_Layer: 8
@@ -31,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8240047376478850253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0062, y: 0.9713, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9877, y: 0.9425, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -152,22 +151,6 @@ MonoBehaviour:
   QuantidadeMortosTotal: 0
   forcaDano: 1
   tipo: 0
---- !u!58 &429026646584860593
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8240047376478850253}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.024023624, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.85214984
 --- !u!95 &9144666052504132699
 Animator:
   serializedVersion: 3
@@ -178,7 +161,7 @@ Animator:
   m_GameObject: {fileID: 8240047376478850253}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cae7d0f92f954944d96e1f5806dba24e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

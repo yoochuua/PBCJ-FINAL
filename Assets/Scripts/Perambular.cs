@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(Animator))]
 
 ///<summary> Classe que controla a movimentação dos inimigos
@@ -20,7 +18,6 @@ public class Perambular : MonoBehaviour
     Rigidbody2D rb2D; //Armazena rigidbody2D
     Animator animator; //Armazena o componente Animator
     Transform alvoTransform = null; //Armazena o componente Trannsform do alvo
-    CircleCollider2D circleCollider; //Armazena o componente de SPOT
     Vector3 posicaoFinal; //Posição setado como a final do movimento
 
 
@@ -32,16 +29,6 @@ public class Perambular : MonoBehaviour
         velocidadeCorrente = velocidadePeramular;
         rb2D = GetComponent<Rigidbody2D>();
         StartCoroutine(RotinaPerambular());
-        circleCollider = GetComponent<CircleCollider2D>();
-    }
-
-    /*Metodo que desenha um alvo em volta do inimigo, indicando a partir de onde ele começa a perseguir o player*/
-    private void OnDrawGizmos()
-    {
-        if(circleCollider != null)
-        {
-            Gizmos.DrawWireSphere(transform.position, circleCollider.radius);
-        }
     }
 
     /*
@@ -88,6 +75,7 @@ public class Perambular : MonoBehaviour
     public IEnumerator Mover(Rigidbody2D rbParaMover, float velocidade)
     {
         float distanciaFaltante = (transform.position - posicaoFinal).sqrMagnitude;
+        
 
         //Enquanto não chegou a posição final
         while(distanciaFaltante > float.Epsilon)
@@ -99,18 +87,20 @@ public class Perambular : MonoBehaviour
             }
             if(temDirecao)
             {
-                if(posicaoFinal.x == 0)
+                if(Mathf.Abs(posicaoFinal.x - transform.position.x) <= 2)
                 {
-                    if(posicaoFinal.y > 0)
+                    if(posicaoFinal.y > transform.position.y)
                     {
                         animator.SetBool("cima", true);
+                        animator.SetBool("baixo", false);
                     }
                     else
                     {
                         animator.SetBool("baixo", true);
+                        animator.SetBool("cima", false);
                     }
                 }
-                if(posicaoFinal.x >= 0)
+                else if(posicaoFinal.x >= transform.position.x)
                 {
                     animator.SetBool("direita", true);
                     animator.SetBool("cima", false);

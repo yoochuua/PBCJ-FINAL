@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4663233803120859949}
   - component: {fileID: 4466199691051651495}
   - component: {fileID: 3724704702592434088}
-  - component: {fileID: -2296102812552556956}
   - component: {fileID: -3468418027093401164}
   - component: {fileID: -1266703154638570404}
   m_Layer: 8
@@ -96,7 +95,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663233803120859950}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: cf3a654de91da4646853926585e7bd72, type: 2}
   m_CullingMode: 0
@@ -154,22 +153,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7858553, y: 1.1048255}
   m_EdgeRadius: 0
---- !u!58 &-2296102812552556956
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4663233803120859950}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.015434027, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.097749
 --- !u!114 &-3468418027093401164
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+//[RequireComponent(typeof(Animator))]
 public class Armas : MonoBehaviour
 {
 
-    public GameObject municaoPrefab;        //armazena o prefab da munição
-    static List<GameObject> municaoPiscina; //Pool de munição
+    public GameObject municaoPrefab;        //armazena o prefab da muniï¿½ï¿½o
+    static List<GameObject> municaoPiscina; //Pool de muniï¿½ï¿½o
     public int tamanhoPiscina;              //Tamano da Piscina
-    public float velocidadeArma;            //Velocidade da munição
+    public float velocidadeArma;            //Velocidade da muniï¿½ï¿½o
 
     bool atirando;
     [HideInInspector]
-    public Animator animator;
+    //public Animator animator;
 
     Camera cameraLocal;
 
@@ -30,7 +30,7 @@ public class Armas : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         atirando = false;
         cameraLocal = Camera.main;
         Vector2 abaixoEsquerda = cameraLocal.ScreenToWorldPoint(new Vector2(0, 0));
@@ -132,14 +132,14 @@ public class Armas : MonoBehaviour
                     vetorQuadrante = new Vector2(0.0f, 0.0f);
                     break;
             }
-            animator.SetBool("Atirando", true);
-            animator.SetFloat("AtiraX", vetorQuadrante.x);
-            animator.SetFloat("AtiraY", vetorQuadrante.y);
+            //animator.SetBool("Atirando", true);
+            //animator.SetFloat("AtiraX", vetorQuadrante.x);
+            //animator.SetFloat("AtiraY", vetorQuadrante.y);
             atirando = false;
         }
         else
         {
-            animator.SetBool("Atirando", false);
+            //animator.SetBool("Atirando", false);
         }
     }
 
