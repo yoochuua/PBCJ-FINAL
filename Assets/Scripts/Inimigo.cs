@@ -82,8 +82,10 @@ public class Inimigo : Caractere
         }
     }
 
-
-    public GameObject DropO(Vector3 posicao) // FUNÇÃO DE DROPAR GAMEoBJECT QUANDO INIMIGO  MORRE
+    /*
+        FUNÇÃO DE DROPAR GAMEoBJECT QUANDO INIMIGO  MORRE
+    */
+    public GameObject DropO(Vector3 posicao)
     {
         while (drop != null && Random.Range(0,100)<dropChance)//Probabilidade de haver drops
         {

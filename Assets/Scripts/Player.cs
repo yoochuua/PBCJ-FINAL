@@ -11,6 +11,8 @@ public class Player : Caractere
     public HealthBar healthBarPrefab; //Referencia ao objeto prefab da barra de vida
     HealthBar healthBar;
     public PontosDano pontosDano; // Tem o valor da "Saúde" do objeto
+    public AudioSource audioSource;
+    public AudioClip damageClip;
     
     private void Start ()
      {
@@ -31,6 +33,8 @@ public class Player : Caractere
         while (true){
             StartCoroutine(FlickerCaractere());
             pontosDano.valor = pontosDano.valor - dano;
+            audioSource.clip = damageClip;
+            audioSource.Play();
             if(pontosDano.valor <= float.Epsilon){
                 KillCaractere();
                 break;
