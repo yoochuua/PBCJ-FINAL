@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc61997d7f52594d818ee2dbf5ec0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelocidadeMovimento: 5
+  VelocidadeMovimento: 4
 --- !u!114 &5250193386668153130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +271,8 @@ MonoBehaviour:
   pontosDano: {fileID: 11400000, guid: c91ed18b43f3aa342a49552dfd7209ac, type: 2}
   audioSource: {fileID: -7929790796500500181}
   damageClip: {fileID: 8300000, guid: 8c21de958abdd1f40ba9d272b0f05a61, type: 3}
+  movimentaPlayer: {fileID: 0}
+  incrementoDeVelocidade: 0.2
 --- !u!114 &6750738197013957079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   municaoPrefab: {fileID: 1396850472321851680, guid: a8b8fd2f358187d4da280168676336d2, type: 3}
   tamanhoPiscina: 7
-  velocidadeArma: 2
+  velocidadeMunicao: 5
 --- !u!82 &-7929790796500500181
 AudioSource:
   m_ObjectHideFlags: 0

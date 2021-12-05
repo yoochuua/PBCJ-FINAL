@@ -15,6 +15,8 @@ public class Player : Caractere
     public PontosDano pontosDano; // Tem o valor da "Saúde" do objeto
     public AudioSource audioSource;
     public AudioClip damageClip;
+    public MovimentaPlayer movimentaPlayer;
+    public float incrementoDeVelocidade = 0.5f;
 
     private void Start()
     {
@@ -129,6 +131,9 @@ public class Player : Caractere
                     case Item.TipoItem.HEALTH:
                         DeveDesaparecer = AjusteDanoObjeto(danoObjeto.quantidade);
                         break;
+                    case Item.TipoItem.POWERUP:
+                        DeveDesaparecer = AjusteVelocidadePlayer();
+                        break;
                     default:
                         break;
                 }
@@ -139,7 +144,7 @@ public class Player : Caractere
             }
         }
     }
-    /* metodo que ajusta os potos de dano*/
+    /* metodo que ajusta os pontos de dano*/
     public bool AjusteDanoObjeto(int quantidade)
     {
         if (pontosDano.valor < MaxPontosDano)
@@ -152,5 +157,12 @@ public class Player : Caractere
         {
             return false;
         }
+    }
+
+    /* Ajusta a velocidade do player */
+    public bool AjusteVelocidadePlayer()
+    {
+        movimentaPlayer.incrementaVelocidade(incrementoDeVelocidade);
+        return true;
     }
 }

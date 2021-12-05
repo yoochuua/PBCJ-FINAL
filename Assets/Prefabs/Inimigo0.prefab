@@ -150,11 +150,10 @@ MonoBehaviour:
   MaxPontosDano: 2
   QuantidadeMortosTotal: 0
   forcaDano: 1
-  dropChance: 100
+  dropChance: 20
   drop:
   - {fileID: 2085645448517044407, guid: d54898efd3bbb4e48938aa5f74ba926b, type: 3}
-  - {fileID: 6194340035055317913, guid: 4ff650a4235b8244c8172e8a05df2519, type: 3}
-  - {fileID: 8585365028028777784, guid: 67fd4bb02e9c32b45aefd3d305ce8afa, type: 3}
+  - {fileID: 2085645448517044407, guid: e85daaa975ada6e4887556ff8e69e793, type: 3}
   tipo: 0
 --- !u!95 &9144666052504132699
 Animator:

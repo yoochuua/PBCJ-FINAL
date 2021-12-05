@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Inventario : MonoBehaviour
 {
     public GameObject slotPrefab; // obejto que recebe o prefab Slot
-    public const int numSlots = 5; // numero fixo de slots
+    public const int numSlots = 0; // numero fixo de slots
     Image[] itemImagens = new Image[numSlots]; // array de imagens 
     Item[] items = new Item[numSlots]; // array de itens
     GameObject[] slots = new GameObject[numSlots]; //array de slots

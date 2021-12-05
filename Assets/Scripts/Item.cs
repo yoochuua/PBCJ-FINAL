@@ -23,7 +23,8 @@ public class Item : ScriptableObject
         GEM2,
         GEM3,
         GEM4,
-        GEM5
+        GEM5,
+        POWERUP
     }
     public TipoItem tipoItem; //Tipo do item
 }

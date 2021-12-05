@@ -99,11 +99,11 @@ public class PontoSpawn : MonoBehaviour
 
     /*
         Escolhe porcentagem para cada inimigo
-        sendo o inimigo0 100% até o round 10
-        inimigo1 aumenta do round 11 até round 31, até 100%. Enquanto o 0 decresce
-        inimigo2 aumenta do round 32 até round 52, até 100%. Enquanto o 1 decresce
-        inimigo3 aumenta do round 53 até round 73, até 100%. Enquanto o 1 decresce
-        inimigo4 aumenta do round 73 até round 94 que a partir desse round é o unico tipo. Enquanto o 3 decresce
+        sendo inimigo0 e inimigo1 50% cada até o round 10
+        inimigo1 aumenta do round 11 até round 21, até 100%. Enquanto o 0 decresce
+        inimigo2 aumenta do round 22 até round 42, até 100%. Enquanto o 1 decresce
+        inimigo3 aumenta do round 43 até round 63, até 100%. Enquanto o 1 decresce
+        inimigo4 aumenta do round 63 até round 84 que a partir desse round é o unico tipo. Enquanto o 3 decresce
 
     */
     public void escolhaInimigo()

@@ -169,7 +169,7 @@ MonoBehaviour:
   MaxPontosDano: 2
   QuantidadeMortosTotal: 0
   forcaDano: 1
-  dropChance: 10
+  dropChance: 30
   drop:
   - {fileID: 2085645448517044407, guid: d54898efd3bbb4e48938aa5f74ba926b, type: 3}
   tipo: 0

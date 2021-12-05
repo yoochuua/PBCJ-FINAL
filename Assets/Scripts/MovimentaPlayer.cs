@@ -78,4 +78,8 @@ public class MovimentaPlayer : MonoBehaviour
         animator.SetFloat("dirY", Movimento.y);
 
     }
+
+    public void incrementaVelocidade(float soma){
+        VelocidadeMovimento += soma;
+    }
 }

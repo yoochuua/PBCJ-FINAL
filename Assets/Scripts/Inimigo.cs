@@ -82,13 +82,14 @@ public class Inimigo : Caractere
         }
     }
 
-
-    public GameObject DropO(Vector3 posicao) // FUNÇÃO DE DROPAR GAMEoBJECT QUANDO INIMIGO  MORRE
+    /*
+        Função de dropar gameObject quando inimigo morre
+    */
+    public GameObject DropO(Vector3 posicao)
     {
-        while (drop != null && Random.Range(0,100)<dropChance)//Probabilidade de haver drops
+        while (drop != null && Random.Range(0,100)<dropChance) //Probabilidade de haver drops
         {
             return Instantiate(drop[Random.Range(0, drop.Length)], posicao, Quaternion.identity);
-            dropChance = dropChance - (dropChance / 3);
         }
         return null;
     }
